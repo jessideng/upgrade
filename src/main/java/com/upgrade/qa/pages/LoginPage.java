@@ -12,19 +12,17 @@ import com.upgrade.qa.data.PersonalInfoBean;
 
 
 public class LoginPage extends BasePage{
-	
 
-	
 	@FindBy(css="[data-auto='username']")
 	private WebElement username;
-	
+
 	@FindBy(css="[data-auto='password']")
 	private WebElement password;
-	
+
 	@FindBy(css="[data-auto='login']")
 	private WebElement signInButton;
 
-    protected static final Logger Logger = LoggerFactory.getLogger(LoginPage.class);
+	private static final Logger Logger = LoggerFactory.getLogger(LoginPage.class);
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -32,29 +30,24 @@ public class LoginPage extends BasePage{
 		visit(Config.getConfigs().getProperty("baseUrl") + "/portal/login");
 		waitForPageLoad("login");
 	}
-	
+
 	public OfferPage signIn(PersonalInfoBean personalInfo,WebDriver driver) {
+		Logger.info("Login user: " + personalInfo.getEmail() + "/" + personalInfo.getPassword()) ;
 		enterEmail(personalInfo.getEmail());
 		enterPassWord(personalInfo.getPassword());
 		click(signInButton);
 
 		return new OfferPage(driver);
 	}
-	
+
 	public void enterEmail(String email) {
-		if(isDisplayed(username)) {
-			type(email,username);
-		}else {
-			Logger.error("Email Text field not displayed");
-		}
+		type(email,username);
+
 	}
-	
+
 	public void enterPassWord(String passWord) {
-		if(isDisplayed(password)) {
-			type(passWord,password);
-		}else {
-			Logger.error("Password Text field not displayed");
-		}
+		type(passWord,password);
+
 	}
 
 }

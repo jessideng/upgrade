@@ -13,7 +13,7 @@ import org.testng.Assert;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.upgrade.qa.data.StateInfo;
+import com.upgrade.qa.data.StateInfoBean;
 
 import io.restassured.response.Response;
 import static com.upgrade.qa.util.RestUtils.sendHttpGet;
@@ -81,7 +81,7 @@ public class StateInfoValidationTest extends BaseApiTest{
 		Gson gson = new Gson();
 		JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
 		JsonArray jsonArray = jsonObject.getAsJsonArray("states");
-		StateInfo[] states = gson.fromJson(jsonArray, StateInfo[].class);
+		StateInfoBean[] states = gson.fromJson(jsonArray, StateInfoBean[].class);
 		Assert.assertEquals(states.length, 48);
 		
 		Map<String, String> minAgeByState = new HashMap<String, String>();
@@ -92,7 +92,7 @@ public class StateInfoValidationTest extends BaseApiTest{
 		int minLoanAmtStateCount = 0;
 		String minLoanAmtState = "";
 
-		for(StateInfo st: states) {
+		for(StateInfoBean st: states) {
 			stateNameAbrevation.put(st.getLabel(),st.getAbbreviation());
 			minAgeByState.put(st.getLabel(), st.getMinAge());
 			minLoanAmountByState.put(st.getLabel(), st.getMinLoanAmount());	

@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="All Regression Tests"  parallel="classes" thread-count="2">
+	<test verbose="1" name="All regression Test"> 
+		<classes>
+			<class
+				name="com.upgrade.qa.ui.LoanApplicationTest">
+			</class>
+			<class
+				name="com.upgrade.qa.api.StateInfoValidationTest">
+			</class>		
+		</classes>
+	</test>
+</suite> 

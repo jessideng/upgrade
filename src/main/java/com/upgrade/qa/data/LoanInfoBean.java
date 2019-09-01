@@ -15,11 +15,8 @@ public class LoanInfoBean {
 	public LoanInfoBean() {
 		super();
 		this.loanAmount = "2000";
-		//this.loanPurpose = "Pay Off Credit Cards";
-		this.loanPurpose = "CREDIT_CARD";
+		this.loanPurpose = "Pay off Credit Cards";
 	}
-	
-	
 	
 	public String getLoanAmount() {
 		return loanAmount;
@@ -28,7 +25,7 @@ public class LoanInfoBean {
 		this.loanAmount = loanAmount;
 	}
 	public String getLoanPurpose() {
-		return loanPurpose;
+		return loanPurpose.toString();
 	}
 	public void setLoanPurpose(String loanPurpose) {
 		this.loanPurpose = loanPurpose;

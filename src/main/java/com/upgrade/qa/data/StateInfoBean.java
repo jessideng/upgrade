@@ -1,6 +1,11 @@
 package com.upgrade.qa.data;
 
-public class StateInfo {
+public class StateInfoBean {
+	private String label;
+	private String abbreviation;
+	private String minLoanAmount;
+	private String minAge;
+	
 	public String getLabel() {
 		return label;
 	}
@@ -25,8 +30,4 @@ public class StateInfo {
 	public void setMinAge(String minAge) {
 		this.minAge = minAge;
 	}
-	private String label;
-	private String abbreviation;
-	private String minLoanAmount;
-	private String minAge;
 }

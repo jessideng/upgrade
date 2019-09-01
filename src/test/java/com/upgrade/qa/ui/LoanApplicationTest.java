@@ -31,7 +31,6 @@ public class LoanApplicationTest extends BaseTest{
 		NonDMFunnelPage nonDMFunnelPage = new NonDMFunnelPage(getDriver());
 		PersonalInfoPage personalInfoPage = nonDMFunnelPage.checkYourRate(loan, getDriver());
 		OfferPage offerPage = personalInfoPage.createAccount(personalInfo,getDriver());
-		System.out.println("loan amount: " + offerPage.getLoanAmout());
 		
 		//Get offer information from offer page
 		OfferInfoBean expectedOffer = new OfferInfoBean();
@@ -40,9 +39,7 @@ public class LoanApplicationTest extends BaseTest{
 		expectedOffer.setTerm(offerPage.getTerm());
 		expectedOffer.setInterestRage(offerPage.getInterest());
 		expectedOffer.setApr(offerPage.getApr());
-		
-		System.out.println("exptected: " + expectedOffer.getApr());
-		
+				
 		offerPage.signOut(getDriver());
 		
 		//Log in, get offer information as returned user
@@ -57,10 +54,7 @@ public class LoanApplicationTest extends BaseTest{
 		actualOffer.setInterestRage(returnedOfferPage.getInterest());
 		actualOffer.setApr(returnedOfferPage.getApr());
 		
-		System.out.println("actural: " + actualOffer.getApr());
-		
+		//verify offer information matches
 		Assert.assertEquals(actualOffer, expectedOffer, "Offers not match");
 	}
-	
-
 }

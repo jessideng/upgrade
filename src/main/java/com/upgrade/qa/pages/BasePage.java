@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 
 import com.upgrade.qa.common.TimeConstants;
@@ -22,12 +24,23 @@ public class BasePage {
 	}
 
 	public void visit(String url) {
+		Logger.info("Navigate to url: " + url);
 		driver.get(url);
 	}
 
 	public void click(WebElement locator) {
 		if(isDisplayed(locator)) {
-			locator.click();
+			try {	
+				WebDriverWait wait = new WebDriverWait(driver, TimeConstants.TIMEOUT);
+				wait.until(ExpectedConditions.elementToBeClickable(locator));
+				JavascriptExecutor ex=(JavascriptExecutor) driver;
+				ex.executeScript("arguments[0].click()", locator);
+			}catch(ElementClickInterceptedException e) {
+				Logger.info("Try click again");
+				JavascriptExecutor ex=(JavascriptExecutor) driver;
+				ex.executeScript("arguments[0].click()", locator);
+			}
+			
 		}else {
 			Logger.error(locator.toString() + " not present");
 			Assert.fail("Click failed, " + locator.toString() + " not present");

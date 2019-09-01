@@ -1,15 +1,11 @@
 package com.upgrade.qa.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-
 
 
 public class OfferPage extends BasePage{
@@ -65,22 +61,8 @@ public class OfferPage extends BasePage{
 	}
 	
 	public void signOut(WebDriver driver) {
-		if(isDisplayed(menu)) {
-			JavascriptExecutor ex=(JavascriptExecutor) driver;
-			ex.executeScript("arguments[0].click()", menu);
-		}else {
-			Logger.info(menu.toString() + " not present");
-			Assert.fail();
-		}
-		
-		if(!isDisplayed(signOut)) {
-			Logger.info("First menu click failed, try click again");
-			JavascriptExecutor ex=(JavascriptExecutor) driver;
-			ex.executeScript("arguments[0].click()", menu);
-		}
-		click(signOut);
-		
+		click(menu);
+		click(signOut);	
 		waitForPageLoad("logout");
 	}
-
 }

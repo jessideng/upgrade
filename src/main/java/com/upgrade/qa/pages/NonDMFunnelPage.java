@@ -39,22 +39,40 @@ public class NonDMFunnelPage extends BasePage{
 		
 		waitForPageLoad("personal-information-1");
 		return new PersonalInfoPage(driver);
-		
-		
 	}
 	
-	private void enterLoanAmount(String amount) {
-		if(isDisplayed(desiredAmount)) {
-			type(amount,desiredAmount);
-		}else {
-			Logger.error("Loan Amount Text field not displayed");
-		}
+	public void enterLoanAmount(String amount) {
+		type(amount,desiredAmount);
 	}
 	
-	private void selectLoanPurpose(String purpose) {
+	public void selectLoanPurpose(String purpose) {
 		if(isDisplayed(loanPurpose)) {
+			
 			Select dropdown  = new Select(loanPurpose);
-			dropdown.selectByValue(purpose);
+			String selectedPurpose = "";
+//			dropdown.selectByValue(purpose);
+			switch (purpose) {
+			case "Pay off Credit Cards":
+				selectedPurpose = "CREDIT_CARD";
+				break;
+			case "Debt Consolidation":
+				selectedPurpose = "DEBT_CONSOLIDATION";
+				break;
+			case "Business":
+				selectedPurpose = "SMALL_BUSINESS";
+				break;
+			case "Home Improvement":
+				selectedPurpose = "HOME_IMPROVEMENT";
+				break;
+			case "Large Purchase":
+				selectedPurpose = "LARGE_PURCHASE";
+				break;
+			case "Other":
+				selectedPurpose = "OTHER";
+				break;
+			}
+			
+			dropdown.selectByValue(selectedPurpose);
 		}else {
 			Logger.error("Loan Purpose dropdown not displayed");
 		}
