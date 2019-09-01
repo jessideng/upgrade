@@ -66,11 +66,8 @@ public class OfferPage extends BasePage{
 	
 	public void signOut(WebDriver driver) {
 		if(isDisplayed(menu)) {
-			JavascriptExecutor ex=(JavascriptExecutor)driver;
+			JavascriptExecutor ex=(JavascriptExecutor) driver;
 			ex.executeScript("arguments[0].click()", menu);
-			
-//			Actions actions = new Actions(driver);
-//			actions.moveToElement(menu).click().build().perform();
 		}else {
 			Logger.info(menu.toString() + " not present");
 			Assert.fail();
@@ -78,8 +75,8 @@ public class OfferPage extends BasePage{
 		
 		if(!isDisplayed(signOut)) {
 			Logger.info("First menu click failed, try click again");
-			Actions actions = new Actions(driver);
-			actions.moveToElement(menu).click().build().perform();
+			JavascriptExecutor ex=(JavascriptExecutor) driver;
+			ex.executeScript("arguments[0].click()", menu);
 		}
 		click(signOut);
 		

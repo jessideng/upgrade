@@ -7,22 +7,39 @@ import java.util.Properties;
 
 
 public class Config {
-	public  static String baseUrl;
-
-	public static String getBaseUrl() {
-
+//	public  static String baseUrl;
+//
+//	public static String getBaseUrl() {
+//		
+//
+//		try{	
+//			Properties prop = new Properties();
+//			InputStream input = Config.class.getClassLoader().getResourceAsStream("config.properties");
+//			prop.load(input);
+//
+//			//get the property value 
+//			baseUrl = prop.getProperty("baseUrl");
+//		} catch (IOException ex) {
+//			ex.printStackTrace();
+//		}finally {
+//			baseUrl = "https://www.credify.tech";
+//		}
+//		return baseUrl;
+//	}
+	
+	public static Properties getConfigs() {
+		Properties prop = new Properties();
+		
 		try{	
-			Properties prop = new Properties();
 			InputStream input = Config.class.getClassLoader().getResourceAsStream("config.properties");
 			prop.load(input);
 
 			//get the property value 
-			baseUrl = prop.getProperty("baseUrl");
+//			baseUrl = prop.getProperty("baseUrl");
 		} catch (IOException ex) {
 			ex.printStackTrace();
-		}finally {
-			baseUrl = "https://www.credify.tech";
 		}
-		return baseUrl;
+		
+		return prop;
 	}
 }

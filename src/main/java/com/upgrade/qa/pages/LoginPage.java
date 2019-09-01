@@ -29,7 +29,7 @@ public class LoginPage extends BasePage{
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		visit(Config.getBaseUrl() + "/portal/login");
+		visit(Config.getConfigs().getProperty("baseUrl") + "/portal/login");
 		waitForPageLoad("login");
 	}
 	

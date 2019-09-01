@@ -23,12 +23,12 @@ public class NonDMFunnelPage extends BasePage{
 	@FindBy(css="[data-auto='CheckYourRate']")
 	private WebElement checkYourRateButton;
 
-    protected static final Logger Logger = LoggerFactory.getLogger(NonDMFunnelPage.class);
+    private static final Logger Logger = LoggerFactory.getLogger(NonDMFunnelPage.class);
 
 	public NonDMFunnelPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		visit(Config.getBaseUrl() + "/phone/nonDMFunnel");
+		visit(Config.getConfigs().getProperty("baseUrl") + "/phone/nonDMFunnel");
 		waitForPageLoad("nonDMFunnel");
 	}
 	

@@ -160,19 +160,12 @@ public class PersonalInfoPage extends BasePage{
 	}
 	
 	public void enterEmail(String email) {
-		if(isDisplayed(username)) {
 			type(email,username);
-		}else {
-			Logger.error("Email Text field not displayed");
-		}
 	}
 	
 	public void enterPassWord(String passWord) {
-		if(isDisplayed(password)) {
-			type(passWord,password);
-		}else {
-			Logger.error("Password Text field not displayed");
-		}
+		type(passWord,password);
+		
 	}
 	
 	

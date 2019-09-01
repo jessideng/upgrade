@@ -10,10 +10,8 @@ import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
 	protected WebDriver driver;
-	public static String baseUrl;
 	private static final Logger Logger = LoggerFactory.getLogger(BaseTest.class);
 
-	
 	@BeforeSuite
 	public void before() {
 		System.setProperty("webdriver.chrome.driver",
