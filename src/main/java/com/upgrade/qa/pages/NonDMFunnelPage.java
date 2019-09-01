@@ -30,6 +30,7 @@ public class NonDMFunnelPage extends BasePage{
 		super(driver);
 		PageFactory.initElements(driver, this);
 		visit("https://www.credify.tech/phone/nonDMFunnel");
+		waitForPageLoad("nonDMFunnel");
 	}
 	
 	public PersonalInfoPage checkYourRate(LoanInfoBean loan,WebDriver driver) {

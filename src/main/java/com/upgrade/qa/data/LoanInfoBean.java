@@ -14,7 +14,7 @@ public class LoanInfoBean {
 	
 	public LoanInfoBean() {
 		super();
-		this.loanAmount = "30000";
+		this.loanAmount = "2000";
 		//this.loanPurpose = "Pay Off Credit Cards";
 		this.loanPurpose = "CREDIT_CARD";
 	}

@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
 
 import com.upgrade.qa.common.TimeConstants;
@@ -11,6 +13,7 @@ import com.upgrade.qa.common.TimeConstants;
 public class BasePage {
 
 	private WebDriver driver;
+	private static final Logger Logger = LoggerFactory.getLogger(BasePage.class);
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
@@ -21,11 +24,26 @@ public class BasePage {
 	}
 
 	public void click(WebElement locator) {
-		locator.click();
+		if(isDisplayed(locator)) {
+			locator.click();
+		}else {
+			Logger.info(locator.getText() + " not present");
+		}
+		
+		
 	}
 
 	public void type(String inputText, WebElement locator) {
 		locator.sendKeys(inputText);
+	}
+	
+	public String getText(WebElement locator) {
+		if(isDisplayed(locator)) {
+			return locator.getText();
+		}else {
+			Logger.info(locator.getText() + " not present");
+			return "";
+		}
 	}
 
 	public Boolean isDisplayed(WebElement locator) {
@@ -40,7 +58,7 @@ public class BasePage {
 	}
 	
 	public void waitForPageLoad(String url) {
-		WebDriverWait wait = new WebDriverWait(driver, TimeConstants.TIMEOUT);
+		WebDriverWait wait = new WebDriverWait(driver, TimeConstants.LONG_TIMEOUT);
 		wait.until(ExpectedConditions.urlContains(url));
 	}
 
