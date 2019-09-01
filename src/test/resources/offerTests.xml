@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="Loan Application Regression Tests">
+	<test verbose="1" name="Offer verification Test"> 
+		<classes>
+			<class
+				name="com.upgrade.qa.ui.LoanApplicationTest">
+			</class>
+		</classes>
+	</test>
+</suite> 

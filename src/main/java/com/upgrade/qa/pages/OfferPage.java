@@ -1,13 +1,16 @@
 package com.upgrade.qa.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
-import com.upgrade.qa.common.TimeConstants;
+
 
 public class OfferPage extends BasePage{
 	
@@ -25,12 +28,14 @@ public class OfferPage extends BasePage{
 	
 	@FindBy(css="[data-auto='defaultMoreInfoAPR']")
 	private WebElement defaultLoanApr;
-	
+
 	@FindBy(css="label[class='header-nav__toggle']")
 	private WebElement menu;
 	
 	@FindBy(partialLinkText="Sign Out")
 	private WebElement signOut;
+
+	private static final Logger Logger = LoggerFactory.getLogger(OfferPage.class);
 
 
 	public OfferPage(WebDriver driver) {
@@ -59,8 +64,23 @@ public class OfferPage extends BasePage{
 		return getText(defaultLoanApr);
 	}
 	
-	public void signOut() {
-		click(menu);
+	public void signOut(WebDriver driver) {
+		if(isDisplayed(menu)) {
+			JavascriptExecutor ex=(JavascriptExecutor)driver;
+			ex.executeScript("arguments[0].click()", menu);
+			
+//			Actions actions = new Actions(driver);
+//			actions.moveToElement(menu).click().build().perform();
+		}else {
+			Logger.info(menu.toString() + " not present");
+			Assert.fail();
+		}
+		
+		if(!isDisplayed(signOut)) {
+			Logger.info("First menu click failed, try click again");
+			Actions actions = new Actions(driver);
+			actions.moveToElement(menu).click().build().perform();
+		}
 		click(signOut);
 		
 		waitForPageLoad("logout");

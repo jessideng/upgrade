@@ -5,11 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.upgrade.qa.common.TimeConstants;
+import com.upgrade.qa.config.Config;
 import com.upgrade.qa.data.LoanInfoBean;
 
 
@@ -29,7 +28,7 @@ public class NonDMFunnelPage extends BasePage{
 	public NonDMFunnelPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		visit("https://www.credify.tech/phone/nonDMFunnel");
+		visit(Config.getBaseUrl() + "/phone/nonDMFunnel");
 		waitForPageLoad("nonDMFunnel");
 	}
 	

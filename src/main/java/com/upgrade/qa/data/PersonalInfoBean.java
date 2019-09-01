@@ -1,5 +1,7 @@
 package com.upgrade.qa.data;
 
+import com.upgrade.qa.util.DataGenerator;
+
 public class PersonalInfoBean {
 	
 	private String firstName;
@@ -14,10 +16,10 @@ public class PersonalInfoBean {
 	private String email;
 	private String password;
 	
-	public PersonalInfoBean(String email) {
+	public PersonalInfoBean() {
 		super();
-		this.firstName = "John";
-		this.lastName = "Smith";
+		this.firstName = DataGenerator.getRandomString(6)+"First";
+		this.lastName = DataGenerator.getRandomString(6)+"Last";
 		this.streetAddress = "123 Market Street";
 		this.city = "San Francisco";
 		this.state = "CA";
@@ -25,7 +27,7 @@ public class PersonalInfoBean {
 		this.dateOfBirth = "02/02/1980";
 		this.income = "120000";
 		this.additionalIncome = "5000";
-		this.email = email;
+		this.email = "candidate" + DataGenerator.getRandomNumber(1, 10000) +"@upgrade-challenge.com";
 		this.password = "Welcome123";
 	}
 	

@@ -6,9 +6,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.openqa.selenium.TimeoutException;
 
 import com.upgrade.qa.common.TimeConstants;
+
 
 public class BasePage {
 
@@ -27,21 +29,26 @@ public class BasePage {
 		if(isDisplayed(locator)) {
 			locator.click();
 		}else {
-			Logger.info(locator.getText() + " not present");
-		}
-		
-		
+			Logger.error(locator.toString() + " not present");
+			Assert.fail("Click failed, " + locator.toString() + " not present");
+		}	
 	}
 
 	public void type(String inputText, WebElement locator) {
-		locator.sendKeys(inputText);
+		if(isDisplayed(locator)) {
+			locator.sendKeys(inputText);
+		}else {
+			Logger.error(locator.toString() + " not present");
+			Assert.fail();
+		}
+		
 	}
 	
 	public String getText(WebElement locator) {
 		if(isDisplayed(locator)) {
 			return locator.getText();
 		}else {
-			Logger.info(locator.getText() + " not present");
+			Assert.fail();
 			return "";
 		}
 	}

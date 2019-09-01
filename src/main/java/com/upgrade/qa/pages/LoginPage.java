@@ -4,13 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.upgrade.qa.common.TimeConstants;
-import com.upgrade.qa.data.LoanInfoBean;
+import com.upgrade.qa.config.Config;
 import com.upgrade.qa.data.PersonalInfoBean;
 
 
@@ -32,7 +29,7 @@ public class LoginPage extends BasePage{
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		visit("https://www.credify.tech/portal/login");
+		visit(Config.getBaseUrl() + "/portal/login");
 		waitForPageLoad("login");
 	}
 	
@@ -41,7 +38,6 @@ public class LoginPage extends BasePage{
 		enterPassWord(personalInfo.getPassword());
 		click(signInButton);
 
-		waitForPageLoad("personal-information-1");
 		return new OfferPage(driver);
 	}
 	
