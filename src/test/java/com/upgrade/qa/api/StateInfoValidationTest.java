@@ -83,9 +83,7 @@ public class StateInfoValidationTest extends BaseApiTest{
 		JsonArray jsonArray = jsonObject.getAsJsonArray("states");
 		StateInfoBean[] states = gson.fromJson(jsonArray, StateInfoBean[].class);
 		Assert.assertEquals(states.length, 48);
-		
-		Map<String, String> minAgeByState = new HashMap<String, String>();
-		Map<String, String> minLoanAmountByState = new HashMap<String, String>();
+
 		Map<String, String> stateNameAbrevation = new HashMap<String, String>();
 		int minAgeStateCount = 0;
 		String minAgeState = "";
@@ -94,8 +92,7 @@ public class StateInfoValidationTest extends BaseApiTest{
 
 		for(StateInfoBean st: states) {
 			stateNameAbrevation.put(st.getLabel(),st.getAbbreviation());
-			minAgeByState.put(st.getLabel(), st.getMinAge());
-			minLoanAmountByState.put(st.getLabel(), st.getMinLoanAmount());	
+
 
 			//check for state that has min age of 19
 			if(st.getMinAge().equals("19")) {
