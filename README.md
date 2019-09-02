@@ -1,3 +1,24 @@
+- Project Structure
+  -  pom.xml
+       - main
+          - java
+            - common
+            - config
+            - data
+            - pages
+            - util
+          - resources
+            - config.properties
+       - test
+          - java
+             - UI test
+               - LoanApplicationTest.java
+             - API test
+               - StateInfoValidationTest.java
+          - resources
+            - testng.xml
+   - drivers
+        - chromedriver
 - UI Test setup
   1. Install selenium-standalone driver
   2. Downloand chromedriver
