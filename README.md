@@ -23,7 +23,7 @@
 - UI Test setup
 
   UI Test uses chromedriver installed in drivers directory. Additional driver can be supported if needed.
-    1. Install selenium-standalone driver 
+    1. Install selenium-standalone 
        - npm install selenium-standalone -g
        - selenium-standalone install   
     2. Download chromedriver to drivers directory
@@ -31,7 +31,7 @@
        - create drivers directory in currect project directy (refer to project structure)
            - mkdir drivers
             - ls current project directory would yield
-               - README.md	drivers		pom.xml		src
+               - README.md	  drivers	  	pom.xml		  src
        - move chromedriver to drivers directory
    3. Start selenium server
         - selenium-standalone start
