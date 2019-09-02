@@ -1,3 +1,8 @@
+- UI Test setup
+  1. Install selenium-standalone driver
+  2. Downloand chromedriver
+  3. Start selenium server
+  
 - To run UI test
   - mvn clean test -Dsuite=offerTests
 
