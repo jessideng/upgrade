@@ -40,6 +40,10 @@ public class OfferPage extends BasePage{
 		waitForPageLoad("offer-page");
 	}
 	
+	public boolean verifyOfferPageLoad() {
+		return verifyPageLoad(userLoanAmount);
+	}
+	
 	public String getLoanAmout() {
 		return getText(userLoanAmount);
 	}

@@ -46,15 +46,21 @@ public class LoanApplicationTest extends BaseTest{
 		LoginPage loginPage= new LoginPage(getDriver());
 		OfferPage returnedOfferPage = loginPage.signIn(personalInfo, getDriver());
 		
-		OfferInfoBean actualOffer = new OfferInfoBean();
+		if(returnedOfferPage.verifyOfferPageLoad()) {
+			OfferInfoBean actualOffer = new OfferInfoBean();
+			
+			actualOffer.setLoanAmount(returnedOfferPage.getLoanAmout());
+			actualOffer.setMonthlyPament(returnedOfferPage.getMonthlyPayment());
+			actualOffer.setTerm(returnedOfferPage.getTerm());
+			actualOffer.setInterestRage(returnedOfferPage.getInterest());
+			actualOffer.setApr(returnedOfferPage.getApr());
+			
+			//verify offer information matches
+			Assert.assertEquals(actualOffer, expectedOffer, "Offers not match");
+		}else {
+			Assert.fail("Offer page not load propertly within specified time");
+		}
+			
 		
-		actualOffer.setLoanAmount(returnedOfferPage.getLoanAmout());
-		actualOffer.setMonthlyPament(returnedOfferPage.getMonthlyPayment());
-		actualOffer.setTerm(returnedOfferPage.getTerm());
-		actualOffer.setInterestRage(returnedOfferPage.getInterest());
-		actualOffer.setApr(returnedOfferPage.getApr());
-		
-		//verify offer information matches
-		Assert.assertEquals(actualOffer, expectedOffer, "Offers not match");
 	}
 }

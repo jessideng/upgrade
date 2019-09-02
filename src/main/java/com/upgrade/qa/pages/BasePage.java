@@ -81,5 +81,22 @@ public class BasePage {
 		WebDriverWait wait = new WebDriverWait(driver, TimeConstants.LONG_TIMEOUT);
 		wait.until(ExpectedConditions.urlContains(url));
 	}
+	
+	public void waitForPageLoad(WebElement locator) {
+		WebDriverWait wait = new WebDriverWait(driver, TimeConstants.LONG_TIMEOUT);
+		wait.until(ExpectedConditions.visibilityOf(locator));
+	}
+	
+	public boolean verifyPageLoad(WebElement locator) {
+		if(isDisplayed(locator)) {
+			return true;
+		}else {
+			driver.navigate().refresh();
+			if(isDisplayed(locator))
+				return true;
+			else 
+				return false;
+		}
+	}
 
 }
