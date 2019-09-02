@@ -19,18 +19,26 @@
             - testng.xml
    - drivers
         - chromedriver
+        
 - UI Test setup
-  1. Install selenium-standalone driver
-  2. Downloand chromedriver
+  1. Install selenium-standalone driver 
+      - npm install selenium-standalone -g
+      - selenium-standalone install   
+  2. Download chromedriver to drivers directory
+      - Download chromedriver that's compatible with chrome version install, https://chromedriver.chromium.org/downloads
+      - create drivers directory in currect project directy (refer to project structure)
+          - mkdir drivers
+      - move chromedriver to drivers directory
   3. Start selenium server
-  
-- To run UI test
-  - mvn clean test -Dsuite=offerTests
+      - selenium-standalone start
 
+- Tests can be run from both IDE and command line
+  - To run from IDE, choose Run As TestNG test
+  - From command line
+    - Run UI Test
+      - mvn clean test -Dsuite=offerTests
+    - Run API test
+      - mvn clean test -Dsuite=stateInfoTests
+    - Run all tests
+      - mvn clean test -Dsuite=allIntegrationTests
 
-- To run API test
-  - mvn clean test -Dsuite=stateInfoTests
-
-
-- To run all tests
-  - mvn clean test -Dsuite=allIntegrationTests
