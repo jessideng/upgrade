@@ -16,7 +16,6 @@ import com.google.gson.JsonObject;
 import com.upgrade.qa.data.StateInfoBean;
 
 import io.restassured.response.Response;
-import static com.upgrade.qa.util.RestUtils.sendHttpGet;
 
 public class StateInfoValidationTest extends BaseApiTest{
 	private static final Logger Logger = LoggerFactory.getLogger(StateInfoValidationTest.class);
@@ -73,7 +72,7 @@ public class StateInfoValidationTest extends BaseApiTest{
 		expectedStateInfo.put("Wisconsin", "WI");
 		expectedStateInfo.put("Wyoming", "WY");
 
-		Response response = sendHttpGet();
+		Response response = sendHttpGet("/api/loanapp/v1/states");
 		Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK);
 		
 		String jsonString = response.asString();
@@ -84,7 +83,7 @@ public class StateInfoValidationTest extends BaseApiTest{
 		StateInfoBean[] states = gson.fromJson(jsonArray, StateInfoBean[].class);
 		Assert.assertEquals(states.length, 48);
 
-		Map<String, String> stateNameAbrevation = new HashMap<String, String>();
+		Map<String, String> stateNameAbrevation = new HashMap<>();
 		int minAgeStateCount = 0;
 		String minAgeState = "";
 		int minLoanAmtStateCount = 0;
